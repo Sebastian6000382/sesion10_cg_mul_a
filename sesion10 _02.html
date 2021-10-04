@@ -27,11 +27,13 @@
             var tamaño;
             var delta;
             var control;
+            var angulo;
 
     function init() {
         
         //Variables ejercicio
-        delta= Math.PI/2;
+        angulo=Math.PI/2;
+        delta= 0.2;
         tamaño=0.2;
         // Creación escena
         scene = new THREE.Scene();
@@ -95,9 +97,9 @@
         document.body.appendChild(renderer.domElement);
         
         //Transformacion 
-        cube.rotation.z =delta;
-        cube2.rotation.y =delta;
-        cube3.rotation.x =delta;
+        cube.rotation.z =angulo;
+        cube2.rotation.y =angulo;
+        cube3.rotation.x =angulo;
         
         cube2.translateX (delta);
         
