@@ -31,7 +31,7 @@
     function init() {
         
         //Variables ejercicio
-        delta= 0.2;
+        delta= Math.PI/2;
         tamaño=0.2;
         // Creación escena
         scene = new THREE.Scene();
@@ -95,13 +95,17 @@
         document.body.appendChild(renderer.domElement);
         
         //Transformacion 
+        cube.rotation.z =delta;
+        cube2.rotation.y =delta;
+        cube3.rotation.x =delta;
         
         cube2.translateX (delta);
         
         cube.translateY (delta);
         
         cube3.translateZ (delta);
-
+        
+        
                 
         render();
     }
@@ -112,10 +116,10 @@
   
 
     function render() {
+        
         renderer.render(scene, camera);
         requestAnimationFrame(render);
     }
-    
     
    
     window.onload = init;
