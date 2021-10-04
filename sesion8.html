@@ -1,0 +1,125 @@
+<!DOCTYPE html >
+<html>
+    
+  <head>
+      
+        <meta charset= "utf-8">
+        <title> Transformaciones </title>
+        <script src = "dat.gui.min.js"></script>
+      
+        <style>
+          body {margin:0;}
+          canvas {display:block;}
+        </style>
+
+      
+  </head>   
+    
+  <body>
+      
+        <script src="js/three.js"> </script>   
+        <script>
+        
+			
+            var renderer;
+            var scene;
+            var camera;
+            var tamaño;
+            var delta;
+            var control;
+
+    function init() {
+        
+        //Variables ejercicio
+        delta= 0.2;
+        tamaño=0.2;
+        // Creación escena
+        scene = new THREE.Scene();
+
+        //Creación camara
+        camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+        // Creación de render, fondo y tamaño
+        renderer = new THREE.WebGLRenderer();
+        renderer.setClearColor(0x000000, 1.0);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        
+       //Creación cubo
+        
+        var cubeGeometry = new THREE.BoxGeometry(tamaño, tamaño ,tamaño);
+        var cubeMaterial = new THREE.MeshNormalMaterial();
+        cubeMaterial.transparent = false;
+        var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.name = 'cube';
+        scene.add(cube);
+        
+        //cubo 2
+        var cubeGeometry2 = new THREE.BoxGeometry(tamaño, tamaño ,tamaño);
+        var cubeMaterial2 = new THREE.MeshNormalMaterial();
+        cubeMaterial2.transparent = false;
+        var cube2 = new THREE.Mesh(cubeGeometry2, cubeMaterial2);
+        cube2.name = 'cube2';
+        scene.add(cube2);
+        //cubo 3
+        
+        var cubeGeometry3 = new THREE.BoxGeometry(tamaño, tamaño ,tamaño);
+        var cubeMaterial3 = new THREE.MeshNormalMaterial();
+        cubeMaterial3.transparent = false;
+        var cube3 = new THREE.Mesh(cubeGeometry3, cubeMaterial3);
+        cube3.name = 'cube3';
+        scene.add(cube3);
+      
+       //Camara
+        camera.position.x = 5;
+        camera.position.y = 5;
+        camera.position.z = 5;
+        camera.lookAt(scene.position);
+        
+  
+
+        
+        //luces
+        function createLights() {
+        // Creacion de luz orientada
+        const ambientLight = new THREE.HemisphereLight(0xddeeff, 0x202020, 9);
+        mainLight = new THREE.DirectionalLight(0xffffff, 3.0);
+        scene.add(ambientLight);
+
+        // ubicacion de la camara
+        mainLight.position.set(1, 10, 10);
+        scene.add(ambientLight, mainLight);
+    }
+        
+
+        //Documento HTML
+        document.body.appendChild(renderer.domElement);
+        
+        //Transformacion 
+        
+        cube2.translateX (delta);
+        
+        cube.translateY (delta);
+        
+        cube3.translateZ (delta);
+
+                
+        render();
+    }
+    // movement
+
+
+    
+  
+
+    function render() {
+        renderer.render(scene, camera);
+        requestAnimationFrame(render);
+    }
+    
+    
+   
+    window.onload = init;
+			
+      </script>
+  </body>
+</html>
